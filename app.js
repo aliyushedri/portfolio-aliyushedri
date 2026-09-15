@@ -1,3 +1,10 @@
+// Keep old index.html links usable while showing the directory URL.
+if (location.pathname.endsWith('/index.html')) {
+  const cleanUrl = new URL(location.href);
+  cleanUrl.pathname = cleanUrl.pathname.slice(0, -'index.html'.length);
+  history.replaceState(history.state, '', cleanUrl);
+}
+
 const isIndonesian = document.documentElement.lang === 'id';
 const toggle = document.querySelector('.nav-toggle');
 const navigation = document.querySelector('.desktop-nav');

@@ -34,13 +34,17 @@ def home_file(locale: str) -> str:
     return "index.html" if locale == "en" else "index-id.html"
 
 
+def home_url(locale: str) -> str:
+    return "./" if locale == "en" else home_file(locale)
+
+
 def detail_file(slug: str, locale: str) -> str:
     suffix = "" if locale == "en" else "-id"
     return f"proyek-{slug}{suffix}.html"
 
 
 def home_href(locale: str, anchor: str) -> str:
-    return f"{home_file(locale)}#{anchor}"
+    return f"{home_url(locale)}#{anchor}"
 
 
 PROJECTS = [
@@ -602,9 +606,9 @@ def t(locale: str, key: str) -> str:
 
 def header(locale: str, slug: str | None = None) -> str:
     other_locale = "id" if locale == "en" else "en"
-    current_home = home_file(locale)
+    current_home = home_url(locale)
     language_target = (
-        home_file(other_locale)
+        home_url(other_locale)
         if slug is None
         else detail_file(slug, other_locale)
     )
@@ -702,7 +706,7 @@ def home_main(locale: str) -> str:
 
 <section class="cv-section container" id="cv" aria-labelledby="cv-title"><div class="section-heading"><h2 id="cv-title">{text(t(locale, "cv_heading"))}</h2><p>{text(t(locale, "cv_intro"))}</p></div><div class="cv-actions"><a class="button button-primary" href="assets/documents/CV-Aliyus-Hedri-EN.pdf" download>{text(t(locale, "download_english_cv"))} {DOWNLOAD}</a><a class="button button-secondary" href="assets/documents/CV-Aliyus-Hedri.pdf" download>{text(t(locale, "download_indonesian_cv"))} {DOWNLOAD}</a></div></section>
 
-<section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-inner"><div class="contact-copy"><h2 id="contact-title">{text(t(locale, "contact_heading"))}<span aria-hidden="true">.</span></h2><p>{text(t(locale, "contact_intro"))}</p></div><div class="contact-channels"><div class="contact-primary"><div class="contact-card contact-username" aria-label="{text(t(locale, "contact_whatsapp"))}"><span class="contact-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 8c0 4 4 8 8 8l1-3-3-1-1 1-2-2 1-1-1-3Z"/></svg></span><span class="contact-card-label">{text(t(locale, "whatsapp"))}<small>@aliyushedri</small><small>{text("Find me by username in WhatsApp" if locale == "en" else "Cari username ini di WhatsApp")}</small></span></div><a class="contact-card" href="mailto:aliyus.hedri@gmail.com" aria-label="{text(t(locale, "contact_gmail"))}"><span class="contact-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></span><span class="contact-card-label">{text(t(locale, "gmail"))}<small>aliyus.hedri@gmail.com</small></span>{EXTERNAL}</a></div><div class="contact-socials"><a href="https://www.instagram.com/aliyushedri" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_instagram"))}">{text(t(locale, "instagram"))}{EXTERNAL}</a><a href="https://www.linkedin.com/in/aliyushedri/" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_linkedin"))}">{text(t(locale, "linkedin"))}{EXTERNAL}</a><a href="https://github.com/aliyushedri" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_github"))}">{text(t(locale, "github"))}{EXTERNAL}</a></div></div></div></section>
+<section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-inner"><div class="contact-copy"><h2 id="contact-title">{text(t(locale, "contact_heading"))}<span aria-hidden="true">.</span></h2><p>{text(t(locale, "contact_intro"))}</p></div><div class="contact-channels"><div class="contact-primary"><div class="contact-card contact-username" aria-label="{text(t(locale, "contact_whatsapp"))}"><span class="contact-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 8c0 4 4 8 8 8l1-3-3-1-1 1-2-2 1-1-1-3Z"/></svg></span><span class="contact-card-label">{text(t(locale, "whatsapp"))}<small>@aliyushedri</small><small>{text("Find me by username in WhatsApp" if locale == "en" else "Cari username ini di WhatsApp")}</small></span></div><a class="contact-card" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=aliyus.hedri%40gmail.com" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_gmail"))}"><span class="contact-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></span><span class="contact-card-label">{text(t(locale, "gmail"))}<small>aliyus.hedri@gmail.com</small></span>{EXTERNAL}</a></div><div class="contact-socials"><a href="https://www.instagram.com/aliyushedri" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_instagram"))}">{text(t(locale, "instagram"))}{EXTERNAL}</a><a href="https://www.linkedin.com/in/aliyushedri/" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_linkedin"))}">{text(t(locale, "linkedin"))}{EXTERNAL}</a><a href="https://github.com/aliyushedri" target="_blank" rel="noopener" aria-label="{text(t(locale, "contact_github"))}">{text(t(locale, "github"))}{EXTERNAL}</a></div></div></div></section>
 </main>'''
 
 
@@ -725,7 +729,7 @@ def project_detail_main(project: dict, locale: str) -> str:
         for title, copy in project["sections"][locale]
     )
     gallery_html = f'<section class="detail-gallery" aria-label="{text(t(locale, "project_documentation"))}">{gallery}</section>' if gallery else ""
-    return f'''<main id="main" class="project-detail container"><a class="back-link" href="{home_href(locale, "projects")}">← {text(t(locale, "back_projects"))}</a><div class="detail-heading"><p class="detail-category">{text(project["label"][locale])} · {text(project["year"])}</p><h1>{text(project["title"][locale])}</h1><p class="detail-lead">{text(project["lead"][locale])}</p></div><figure class="detail-cover image-{project["image"]}"><img src="assets/images/{project["image"]}.webp" alt="{text(project["alt"][locale])}" width="1500" height="1000" fetchpriority="high"></figure><div class="detail-layout"><div class="detail-body">{sections}{certificate_button(project, locale)}</div><aside class="detail-facts"><h2>{text(t(locale, "project_documentation"))}</h2><dl><dt>{text(t(locale, "detail_scope"))}</dt><dd>{text(project["role"][locale])}</dd><dt>{text(t(locale, "detail_period"))}</dt><dd>{text(project["year"])}</dd><dt>{text(t(locale, "detail_tools"))}</dt><dd>{text(project["tools"][locale])}</dd><dt>{text(t(locale, "detail_result"))}</dt><dd>{text(project["result"][locale])}</dd></dl></aside></div>{gallery_html}<div class="detail-bottom"><a class="button button-primary" href="{home_href(locale, "projects")}">{text(t(locale, "other_projects"))} {ARROW}</a><a class="text-link" href="mailto:aliyus.hedri@gmail.com">{text(t(locale, "discuss_project"))} {EXTERNAL}</a></div></main>'''
+    return f'''<main id="main" class="project-detail container"><a class="back-link" href="{home_href(locale, "projects")}">← {text(t(locale, "back_projects"))}</a><div class="detail-heading"><p class="detail-category">{text(project["label"][locale])} · {text(project["year"])}</p><h1>{text(project["title"][locale])}</h1><p class="detail-lead">{text(project["lead"][locale])}</p></div><figure class="detail-cover image-{project["image"]}"><img src="assets/images/{project["image"]}.webp" alt="{text(project["alt"][locale])}" width="1500" height="1000" fetchpriority="high"></figure><div class="detail-layout"><div class="detail-body">{sections}{certificate_button(project, locale)}</div><aside class="detail-facts"><h2>{text(t(locale, "project_documentation"))}</h2><dl><dt>{text(t(locale, "detail_scope"))}</dt><dd>{text(project["role"][locale])}</dd><dt>{text(t(locale, "detail_period"))}</dt><dd>{text(project["year"])}</dd><dt>{text(t(locale, "detail_tools"))}</dt><dd>{text(project["tools"][locale])}</dd><dt>{text(t(locale, "detail_result"))}</dt><dd>{text(project["result"][locale])}</dd></dl></aside></div>{gallery_html}<div class="detail-bottom"><a class="button button-primary" href="{home_href(locale, "projects")}">{text(t(locale, "other_projects"))} {ARROW}</a><a class="text-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=aliyus.hedri%40gmail.com" target="_blank" rel="noopener">{text(t(locale, "discuss_project"))} {EXTERNAL}</a></div></main>'''
 
 
 def build_home(locale: str) -> None:
