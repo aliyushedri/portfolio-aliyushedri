@@ -1,3 +1,11 @@
+// Keep the legacy Indonesian home URL usable while resolving assets from /id/.
+if (location.pathname.endsWith('/index-id.html')) {
+  const redirectUrl = new URL('id/', location.href);
+  redirectUrl.search = location.search;
+  redirectUrl.hash = location.hash;
+  location.replace(redirectUrl.href);
+}
+
 // Keep old index.html links usable while showing the directory URL.
 if (location.pathname.endsWith('/index.html')) {
   const cleanUrl = new URL(location.href);
@@ -27,8 +35,8 @@ document.addEventListener('keydown', event => {
 });
 document.querySelector('.language-switch')?.addEventListener('click', event => {
   const destination = new URL(event.currentTarget.dataset.languageTarget, location.href);
-  destination.hash = location.hash;
-  destination.search = location.search;
+  destination.hash = '';
+  destination.search = '';
   location.assign(destination.href);
 });
 const filters = [...document.querySelectorAll('.filter-button')];

@@ -2,6 +2,7 @@
 
 from html import escape
 from pathlib import Path
+import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,7 +36,7 @@ def home_file(locale: str) -> str:
 
 
 def home_url(locale: str) -> str:
-    return "./" if locale == "en" else home_file(locale)
+    return "./" if locale == "en" else "id/"
 
 
 def detail_file(slug: str, locale: str) -> str:
@@ -607,11 +608,7 @@ def t(locale: str, key: str) -> str:
 def header(locale: str, slug: str | None = None) -> str:
     other_locale = "id" if locale == "en" else "en"
     current_home = home_url(locale)
-    language_target = (
-        home_url(other_locale)
-        if slug is None
-        else detail_file(slug, other_locale)
-    )
+    language_target = home_url(other_locale)
     checked = "false" if locale == "en" else "true"
     logo_alt = "Aliyus Hedri logo" if locale == "en" else "Logo Aliyus Hedri"
     return f'''<a class="skip-link" href="#main">{text(t(locale, "skip"))}</a>
@@ -736,7 +733,22 @@ def build_home(locale: str) -> None:
     title = t(locale, "page_title")
     description = t(locale, "page_description")
     body = header(locale) + home_main(locale) + footer(locale) + certificate_dialog(locale)
-    (ROOT / home_file(locale)).write_text(document(locale, title, description, body), encoding="utf-8")
+    html = document(locale, title, description, body)
+    # Keep the old Indonesian entry point for bookmarks; app.js redirects it.
+    (ROOT / home_file(locale)).write_text(html, encoding="utf-8")
+    if locale == "id":
+        # Nested output needs parent-relative asset, page, and dialog-image URLs.
+        # Local anchors remain on the Indonesian page.
+        def parent_relative(match: re.Match) -> str:
+            attribute, url = match.groups()
+            if url.startswith(("#", "/")) or ":" in url:
+                return match.group(0)
+            return f'{attribute}="../{url}"'
+
+        html = re.sub(r'(href|src|data-language-target|data-certificate)="([^"\n]+)"', parent_relative, html)
+        destination = ROOT / "id" / "index.html"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(html, encoding="utf-8")
 
 
 def build_project(project: dict, locale: str) -> None:
