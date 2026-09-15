@@ -1,0 +1,15 @@
+.work/
+__pycache__/
+*.pyc
+.impeccable/
+
+# Original materials and local notes
+/Asset Foto/
+/Asset Sertifikat/
+/CV_*.pdf
+/DESIGN.md
+/PRODUCT.md
+/assets/documents/kri-2024.pdf
+/assets/documents/mawapres-2024.pdf
+/assets/documents/pimnas-2024.pdf
+/assets/documents/pimnas-2025.pdf
