@@ -78,3 +78,21 @@ dialog?.addEventListener('click', event => {
   if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
 });
 dialog?.addEventListener('close', () => certificateOpener?.focus());
+
+document.querySelectorAll('.copy-contact[data-copy]').forEach(button => {
+  button.addEventListener('click', async () => {
+    const value = button.dataset.copyValue;
+    const status = button.closest('.contact-card')?.querySelector('[data-copy-status]');
+    button.disabled = true;
+    try {
+      await navigator.clipboard.writeText(value);
+      if (status) status.textContent = button.dataset.copySuccess;
+    } catch {
+      if (status) status.textContent = isIndonesian
+        ? `Salin secara manual: ${value}`
+        : `Copy manually: ${value}`;
+    } finally {
+      button.disabled = false;
+    }
+  });
+});

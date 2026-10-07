@@ -44,3 +44,48 @@
 @media(prefers-reduced-motion:reduce){.contact-card:hover,.contact-card:hover>.icon{transform:none}}
 
 .contact-username:hover{transform:none;background:#1c3049;border-color:#425167}
+
+/* Freelance services: clear scope, evidence, and project enquiries. */
+.hero h1{font-size:clamp(54px,6.4vw,82px)}
+.hero-role{font-size:20px;font-weight:650;line-height:1.4;color:#fff;margin:0 0 16px;max-width:32ch}
+.hero-availability{margin-top:18px;color:#b5cce9;font-size:13px}
+.hero .text-link{color:#cbd5e2;margin-top:14px;font-size:13px}
+.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 54px;border-top:1px solid var(--line)}
+.service-card{padding:28px 0;border-bottom:1px solid var(--line);min-width:0}
+.service-card h3{font-size:22px;margin-bottom:14px;max-width:30ch}
+.service-card>p{color:var(--muted);font-size:14px;line-height:1.8;max-width:60ch}
+.service-card .service-tools{margin-top:16px;font-size:12px;line-height:1.8}
+.service-tools span{display:block;color:var(--ink);font-weight:750;font-size:12px;margin-bottom:3px}
+.service-card:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;column-gap:54px}
+.service-card:last-child h3{grid-column:1;grid-row:1/3}
+.service-card:last-child p{grid-column:2}
+.process-section{background:var(--soft)}
+.process-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:42px}
+.process-step h3{font-size:19px;margin:14px 0 12px}
+.process-step p{font-size:14px;color:var(--muted);line-height:1.8}
+.process-number{font-size:14px;font-weight:750;color:var(--blue);display:inline-flex;border-bottom:2px solid var(--blue);padding-bottom:5px}
+.compact-section{padding-top:0}
+.image-telubot{background:#eaf0f8}
+.project-image.image-telubot img{object-fit:contain;padding:14px;object-position:center}
+.detail-cover.image-telubot img{object-fit:contain;max-height:630px;aspect-ratio:2;background:#eaf0f8;padding:24px}
+.image-portfolio img{object-position:top center}
+.project-cover-text,.project-image-empty{display:flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;padding:30px;font-size:28px;text-align:center}
+.project-cover-text{min-height:300px}
+.project-external-link{margin-top:20px}
+.project-meta{font-size:12px}
+.contact-card{position:relative;flex-wrap:wrap;gap:14px}
+.contact-card-label{flex:1;min-width:0}
+.copy-contact{min-height:44px;padding:10px 13px;border:1px solid #61758f;border-radius:7px;background:transparent;color:#dce9fa;font-size:12px;font-weight:650;flex-shrink:0}
+.copy-contact:hover{background:#2b425f;border-color:#b6d5ff}
+.copy-contact:disabled{opacity:.7}
+.contact-email-link{min-height:44px;padding:9px 11px;gap:7px;font-size:12px;font-weight:650;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;color:#b6d5ff}
+.contact-email-link:hover{background:#2b425f}
+.copy-status{flex-basis:100%;font-size:12px;color:#b6d5ff;overflow-wrap:anywhere}
+.copy-status:empty{display:none}
+.contact-email-card:hover{transform:none}
+.contact-socials a{min-height:44px}
+.certificate-dialog{overscroll-behavior:contain}
+@media(max-width:1000px){.service-grid{column-gap:32px}.process-grid{gap:24px}.service-card:last-child{column-gap:32px}}
+@media(max-width:760px){.hero h1{font-size:58px}.hero-role{font-size:18px;margin-bottom:12px}.hero-availability{font-size:12px}.service-grid{grid-template-columns:1fr}.service-card{padding:24px 0}.service-card h3{font-size:21px}.service-card:last-child{display:block}.service-card>p{font-size:14px}.process-grid{grid-template-columns:1fr;gap:28px}.process-step{display:grid;grid-template-columns:35px 1fr;column-gap:16px}.process-number{grid-column:1;grid-row:1/3;align-self:start;margin-top:2px}.process-step h3{grid-column:2;margin:0 0 9px}.process-step p{grid-column:2}.contact-card{gap:10px;padding:18px 14px}.contact-symbol{width:38px;height:38px}.contact-card-label{font-size:14px}.copy-contact{padding:10px;font-size:11px}.contact-email-card .contact-card-label{flex-basis:calc(100% - 50px)}.contact-email-card .contact-email-link{margin-left:48px}.contact-email-card .copy-contact{margin-right:auto}.detail-cover.image-telubot img{aspect-ratio:1;max-height:550px;padding:20px}}
+
+.footer-inner nav{display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px}
